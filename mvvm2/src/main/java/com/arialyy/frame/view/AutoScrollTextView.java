@@ -1,6 +1,7 @@
 package com.arialyy.frame.view;
 
 /**
+ * 文本自动垂直轮播
  * Created by Administrator on 2016/12/8.
  */
 

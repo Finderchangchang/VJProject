@@ -16,6 +16,18 @@ class MainModule : BaseModule {
     constructor(context: Context?) : super(context)
 
     /**
+     * 用户登录
+     * @param name 账号
+     * @param pwd 密码
+     * */
+    fun login(name: String, pwd: String) {
+        var map = HashMap<String, String>()
+        map.put("name", name)
+        map.put("pwd", pwd)
+        HttpUtil<VersionModel>().new_get(url.key + "ylUpload.php", command.login + 5, map, this, object : TypeToken<VersionModel>() {})
+    }
+
+    /**
      * 检查更新
      * */
     fun check_version() {

@@ -58,5 +58,7 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'junit:junit:4.12'
     compile 'com.android.support.test:runner:1.0.1'
+    compile 'com.github.bboylin:UniversalToast:v1.0.5'//优雅的弹出框
+    compile 'com.github.Othershe:NiceDialog:1.1.4'//各类弹出框
     compile 'com.android.support.test.espresso:espresso-core:3.0.1'
 }

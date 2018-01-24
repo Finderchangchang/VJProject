@@ -18,6 +18,7 @@ import android.util.Base64
 import android.view.View
 import android.view.WindowManager
 import android.widget.ListView
+import vj.project.base.ui.BaseApplication
 import java.io.*
 import java.lang.Exception
 import java.sql.Timestamp

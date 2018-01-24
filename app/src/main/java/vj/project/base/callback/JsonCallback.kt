@@ -135,7 +135,7 @@ abstract class JsonCallback<T> : AbsCallback<T>() {
                 //比如：其他乱七八糟的等，在此实现相应的逻辑，弹出对话或者跳转到其他页面等,该抛出错误，会在onError中回调。
                 throw IllegalStateException("其他乱七八糟的等")
             } else {
-                throw IllegalStateException(lzyResponse.Message)
+                throw IllegalStateException(lzyResponse.msg)
             }
         } else {
             response.close()

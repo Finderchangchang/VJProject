@@ -17,7 +17,7 @@ public class SimpleResponse implements Serializable {
     public ListRequest toLzyResponse() {
         ListRequest lzyResponse = new ListRequest();
         lzyResponse.setCode(code);
-        lzyResponse.setMessage(msg);
+        lzyResponse.setMsg(msg);
         return lzyResponse;
     }
 }

@@ -9,5 +9,5 @@ import java.io.Serializable
 class ObjectRequest<T> : Serializable {
     var code: Int = 0
     var msg = ""
-    var dataList: T? = null
+    var data: T? = null
 }

@@ -65,16 +65,22 @@ class HttpUtil<T> {
                         control.callback(back_id, NormalRequest(1, t.msg, t.Data))
                     }
                 } catch (e: Exception) {
-                    t as ObjectRequest<*>
-                    if (t.code == 1) {
-                        try {
-                            control.callback(back_id, NormalRequest(0, t!!.msg, t.dataList))
-                        } catch (e: Exception) {
-                            control.callback(back_id, NormalRequest(2, "未知错误：" + e.toString(), null))
+                    try {
+                        t.toString() as ObjectRequest<*>
+                        if (t.code == 1) {
+                            try {
+                                control.callback(back_id, NormalRequest(0, t!!.msg, t!!.data))
+                            } catch (e: Exception) {
+                                control.callback(back_id, NormalRequest(2, "未知错误：" + e.toString(), null))
+                            }
+                        } else {
+                            control.callback(back_id, NormalRequest(1, t!!.msg, null))
                         }
-                    } else {
-                        control.callback(back_id, NormalRequest(1, t!!.msg, null))
+                    } catch (e: Exception) {
+                        var s = e
+                        var a = ""
                     }
+
                 }
 
             }
