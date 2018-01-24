@@ -13,7 +13,7 @@ import xyz.bboylin.universialtoast.UniversalToast
 
 class MainActivity : BaseActivity<ActivityMainBinding>(), AbsModule.OnCallback {
     override fun onSuccess(result: Int, success: Any?) {
-        when(result){
+        when (result) {
 
         }
         var s = success as NormalRequest<String>
@@ -26,11 +26,20 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), AbsModule.OnCallback {
     var i = 0;
     override fun init(savedInstanceState: Bundle?) {
         super.init(savedInstanceState)
-        getModule(MainModule::class.java, this).check_version()
+        //getModule(MainModule::class.java, this).check_version()
         title_ll.setOnClickListener {
             load_dialog.show(supportFragmentManager);
-            load_dialog.dismiss()
+            object : Thread() {
+                override fun run() {
+                    Thread.sleep(3000)
+                    runOnUiThread {
+                        toast_error("error")
+                        load_dialog.dismiss()
+                    }
+                }
+            }.start()
         }
+
     }
 
     override fun setLayoutId(): Int {
