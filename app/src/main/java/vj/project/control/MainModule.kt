@@ -24,7 +24,7 @@ class MainModule : BaseModule {
         var map = HashMap<String, String>()
         map.put("name", name)
         map.put("pwd", pwd)
-        HttpUtil<VersionModel>().new_get(url.key + "ylUpload.php", command.login + 5, map, this, object : TypeToken<VersionModel>() {})
+        HttpUtil<VersionModel>().new_get(url.key + "ylUpload.php", command.login + 1, map, this, object : TypeToken<VersionModel>() {})
     }
 
     /**
@@ -32,6 +32,6 @@ class MainModule : BaseModule {
      * */
     fun check_version() {
         var map = HashMap<String, String>()
-        HttpUtil<VersionModel>().new_get(url.key + "ylUpload.php", command.login + 5, map, this, object : TypeToken<VersionModel>() {})
+        HttpUtil<VersionModel>().new_get(url.key + "ylUpload.php", command.login + 2, map, this, object : TypeToken<VersionModel>() {})
     }
 }
