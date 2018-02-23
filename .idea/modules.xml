@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/VJProject.iml" filepath="$PROJECT_DIR$/VJProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/camerafragment/camerafragment.iml" filepath="$PROJECT_DIR$/camerafragment/camerafragment.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvvm2/mvvm2.iml" filepath="$PROJECT_DIR$/mvvm2/mvvm2.iml" />
     </modules>
   </component>

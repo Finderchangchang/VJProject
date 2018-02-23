@@ -1,1 +1,1 @@
-include ':app',':mvvm2'
+include ':app',':mvvm2',':camerafragment'
