@@ -3,6 +3,8 @@ package vj.project.control
 import android.content.Context
 import com.google.gson.reflect.TypeToken
 import vj.project.base.http.HttpUtil
+import vj.project.base.http.HttpUtils
+import vj.project.base.http.ListRequest
 import vj.project.base.ui.BaseModule
 import vj.project.config.command
 import vj.project.config.url
@@ -24,14 +26,17 @@ class MainModule : BaseModule {
         var map = HashMap<String, String>()
         map.put("name", name)
         map.put("pwd", pwd)
-        HttpUtil<VersionModel>().new_get(url.key + "ylUpload.php", command.login + 1, map, this, object : TypeToken<VersionModel>() {})
+        var url = "http://gr.rungo.net/?s=index/api/get_provinces123"
+        var token = object : TypeToken<ListRequest<VersionModel>>() {}//需要解析的多层类
+        HttpUtils<ListRequest<VersionModel>>(this, command.login + 1).post(url, token)
     }
 
     /**
      * 检查更新
      * */
     fun check_version() {
-        var map = HashMap<String, String>()
-        HttpUtil<VersionModel>().new_get(url.key + "ylUpload.php", command.login + 2, map, this, object : TypeToken<VersionModel>() {})
+        var url = "http://gr.rungo.net/?s=index/api/get_provinces"
+        var token = object : TypeToken<ListRequest<VersionModel>>() {}
+        HttpUtils<ListRequest<VersionModel>>(this, command.login + 2).post(url, token)
     }
 }

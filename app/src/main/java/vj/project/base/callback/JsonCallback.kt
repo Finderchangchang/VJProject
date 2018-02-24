@@ -1,8 +1,10 @@
 package vj.project.base.callback
 
 import android.text.TextUtils
+import com.google.gson.reflect.TypeToken
 import com.google.gson.stream.JsonReader
 import com.lzy.okgo.callback.AbsCallback
+import com.lzy.okgo.convert.StringConvert
 import com.lzy.okgo.request.BaseRequest
 import gd.mmanage.method.Utils
 
@@ -21,8 +23,13 @@ import java.util.*
  * QQ群481606175
  */
 
-abstract class JsonCallback<T> : AbsCallback<T>() {
+abstract class JsonCallback<T> : AbsCallback<T> {
 
+    constructor(type: TypeToken<T>) {
+        tokee = type;
+    }
+
+    var tokee: TypeToken<T>? = null
     override fun onBefore(request: BaseRequest<*>?) {
         super.onBefore(request)
         var token = Utils.getCache(sp.token)
@@ -90,6 +97,10 @@ abstract class JsonCallback<T> : AbsCallback<T>() {
         // Utils.putCache("PHPSESSID", headers[0].split(":").get(1).replace("\""))
         //}
         val params = (genType as ParameterizedType).actualTypeArguments
+        val s = StringConvert.create().convertSuccess(response)
+
+        val jsonReader = JsonReader(response.body().charStream())
+
         //我们的示例代码中，只有一个泛型，所以取出第一个，得到如下结果
         //com.lzy.demo.model.LzyResponse<com.lzy.demo.model.ServerModel>
         val type = params[0] as? ParameterizedType ?: throw IllegalStateException("没有填写泛型参数")
@@ -106,7 +117,6 @@ abstract class JsonCallback<T> : AbsCallback<T>() {
 
         //这里我们既然都已经拿到了泛型的真实类型，即对应的 class ，那么当然可以开始解析数据了，我们采用 Gson 解析
         //以下代码是根据泛型解析数据，返回对象，返回的对象自动以参数的形式传递到 onSuccess 中，可以直接使用
-        val jsonReader = JsonReader(response.body().charStream())
         if (typeArgument === Void::class.java) {
             //无数据类型,表示没有data数据的情况（以  new DialogCallback<LzyResponse<Void>>(this)  以这种形式传递的泛型)
             val simpleResponse = Convert.fromJson<SimpleResponse>(jsonReader, SimpleResponse::class.java)

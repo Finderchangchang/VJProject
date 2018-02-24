@@ -2,21 +2,17 @@ package vj.project
 
 import android.os.Bundle
 import com.arialyy.frame.module.AbsModule
-import com.othershe.nicedialog.BaseNiceDialog
-import com.othershe.nicedialog.NiceDialog
 import kotlinx.android.synthetic.main.activity_main.*
-import vj.project.base.http.NormalRequest
+import vj.project.base.http.ListRequest
 import vj.project.base.ui.BaseActivity
-import vj.project.control.MainModule
 import vj.project.databinding.ActivityMainBinding
-import xyz.bboylin.universialtoast.UniversalToast
 
 class MainActivity : BaseActivity<ActivityMainBinding>(), AbsModule.OnCallback {
     override fun onSuccess(result: Int, success: Any?) {
         when (result) {
 
         }
-        var s = success as NormalRequest<String>
+        var s = success as ListRequest<String>
     }
 
     override fun onError(result: Int, error: Any?) {
