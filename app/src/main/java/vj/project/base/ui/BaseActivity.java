@@ -4,9 +4,12 @@ import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.arialyy.frame.core.AbsActivity;
+import com.arialyy.frame.module.AbsModule;
 import com.arialyy.frame.view.TitleBar;
 import com.othershe.nicedialog.BaseNiceDialog;
 import com.othershe.nicedialog.NiceDialog;
@@ -18,7 +21,7 @@ import xyz.bboylin.universialtoast.UniversalToast;
  * Created by lyy on 2016/7/13.
  * https://github.com/AriaLyy/MVVM
  */
-public abstract class BaseActivity<VB extends ViewDataBinding> extends AbsActivity<VB> {
+public abstract class BaseActivity<VB extends ViewDataBinding> extends AbsActivity<VB> implements AbsModule.OnCallback {
     TitleBar title_bar;
     UniversalToast toast;
     public AlertDialog.Builder builder;
@@ -94,14 +97,23 @@ public abstract class BaseActivity<VB extends ViewDataBinding> extends AbsActivi
      * @param resId 左侧图标id
      */
     public void toast(String msg, int resId) {
-        //if (toast == null) {
         toast = UniversalToast.makeText(this, msg, UniversalToast.LENGTH_SHORT);
-//        } else {
-//            toast.setText(msg);
-//        }
         if (resId != 0) {
             toast.setIcon(resId);
-            toast.show();
         }
+        toast.show();
+    }
+
+    @Override
+    public void onSuccess(int result, Object success) {
+
+    }
+
+    /**
+     * 网络请求，数据或网络异常时回调
+     */
+    @Override
+    public void onError(int result, Object error) {
+        toast(error.toString());
     }
 }

@@ -12,9 +12,9 @@ import vj.project.control.MainModule
 import vj.project.databinding.ActivityLoginBinding
 import vj.project.model.VersionModel
 
-class LoginActivity : BaseActivity<ActivityLoginBinding>(), AbsModule.OnCallback {
+class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     override fun onSuccess(result: Int, success: Any?) {
-        var model=success as ListRequest<VersionModel>
+        var model = success as ListRequest<VersionModel>
         when (result) {
             command.login + 1 -> {
 
@@ -25,24 +25,18 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(), AbsModule.OnCallback
         }
     }
 
-    override fun onError(result: Int, error: Any?) {
-        var s=""
-    }
-
-    var control: MainModule? = null
+    private var control: MainModule? = null
     override fun init(savedInstanceState: Bundle?) {
         super.init(savedInstanceState)
-        control =getModule(MainModule::class.java,this)
+        control = getModule(MainModule::class.java, this)
         control!!.check_version()//检查更新操作
         login_btn.setOnClickListener {
             var name = name_et.text.toString().trim()
             var pwd = pwd_et.text.toString().trim()
-            if (TextUtils.isEmpty(name)) {
-                toast(getString(R.string.name_is_error))
-            } else if (TextUtils.isEmpty(pwd)) {
-                toast(getString(R.string.pwd_is_error))
-            } else {
-                control!!.login(name, pwd)//登录
+            when {
+                TextUtils.isEmpty(name) -> toast(getString(R.string.name_is_error))
+                TextUtils.isEmpty(pwd) -> toast(getString(R.string.pwd_is_error))
+                else -> control!!.login(name, pwd)//登录
             }
         }
     }
