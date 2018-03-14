@@ -1,5 +1,6 @@
 package vj.project.ui.ac
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import com.arialyy.frame.module.AbsModule
@@ -11,6 +12,7 @@ import vj.project.config.command
 import vj.project.control.MainModule
 import vj.project.databinding.ActivityLoginBinding
 import vj.project.model.VersionModel
+import vj.project.ui.service.ShowService
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     override fun onSuccess(result: Int, success: Any?) {

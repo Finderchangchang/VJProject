@@ -1,11 +1,13 @@
 package vj.project
 
+import android.content.Intent
 import android.os.Bundle
 import com.arialyy.frame.module.AbsModule
 import kotlinx.android.synthetic.main.activity_main.*
 import vj.project.base.http.ListRequest
 import vj.project.base.ui.BaseActivity
 import vj.project.databinding.ActivityMainBinding
+import vj.project.ui.service.ShowService
 
 class MainActivity : BaseActivity<ActivityMainBinding>(), AbsModule.OnCallback {
     override fun onSuccess(result: Int, success: Any?) {
@@ -23,6 +25,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), AbsModule.OnCallback {
     override fun init(savedInstanceState: Bundle?) {
         super.init(savedInstanceState)
         //getModule(MainModule::class.java, this).check_version()
+        startService(Intent(this, ShowService::class.java))
+
         title_ll.setOnClickListener {
             load_dialog.show(supportFragmentManager);
             object : Thread() {

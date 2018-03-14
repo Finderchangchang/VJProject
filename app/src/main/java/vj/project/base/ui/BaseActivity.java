@@ -97,7 +97,11 @@ public abstract class BaseActivity<VB extends ViewDataBinding> extends AbsActivi
      * @param resId 左侧图标id
      */
     public void toast(String msg, int resId) {
-        toast = UniversalToast.makeText(this, msg, UniversalToast.LENGTH_SHORT);
+        if (toast == null) {
+            toast = UniversalToast.makeText(this, msg, UniversalToast.LENGTH_SHORT);
+        } else {
+            toast.setText(msg);
+        }
         if (resId != 0) {
             toast.setIcon(resId);
         }
